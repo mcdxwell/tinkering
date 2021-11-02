@@ -8,7 +8,7 @@ Tweet 1:
  
 >   A full layman's understanding would yield a formal understanding
  
-   The trouble people mostly have is deciphering the notation and linking it with muscle memory"
+>   The trouble people mostly have is deciphering the notation and linking it with muscle memory"
 
 Tweet 2:
 >  "Recently saw I think it was 
