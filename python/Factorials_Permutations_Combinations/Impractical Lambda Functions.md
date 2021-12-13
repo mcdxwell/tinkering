@@ -4,18 +4,20 @@ function for combination and permutation functions.
 Tweet/thread: 
 
 Tweet 1:
-"The thing about formalism is there's really no such thing as a layman's understanding
+> "The thing about formalism is there's really no such thing as a layman's understanding
  
-   A full layman's understanding would yield a formal understanding
+>   A full layman's understanding would yield a formal understanding
  
-   The trouble people mostly have is deciphering the notation and linking it with muscle memory"
+>   The trouble people mostly have is deciphering the notation and linking it with muscle memory"
 
 Tweet 2:
-  "Recently saw I think it was 
-   @sebs_tweets
-   have the aha moment that the summation symbol is just like aggregating via for loop
+>  "Recently saw I think it was 
+>   @sebs_tweets
+>   have the aha moment that the summation symbol is just like aggregating via for loop
 
-   That is the manner in which things start to become mentally "compressible" and therefore manageable"
+>   That is the manner in which things start to become mentally "compressible" and therefore manageable"
+
+
 
 
 Analogous to summation notation described as aggregating via for loop, we use factorials to understand
