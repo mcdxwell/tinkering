@@ -10,3 +10,6 @@ func main() {
 
 // rune literals use single quotation marks (')
 // string literals use double quotation marks (")
+// The ouput is unicode character code
+// 'A' will output: 65
+// '\t' will output: 9
