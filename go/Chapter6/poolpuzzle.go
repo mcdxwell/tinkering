@@ -1,5 +1,3 @@
-
-
 package main
 
 import "fmt"
@@ -13,8 +11,8 @@ func main() {
 		fmt.Println(i, number)
 	}
 
-	var letters = []string {"a", "b", "c"}
-	for i, letter := range( letters {
+	var letters = []string{"a", "b", "c"}
+	for i, letter := range letters {
 		fmt.Println(i, letter)
 	}
 }
