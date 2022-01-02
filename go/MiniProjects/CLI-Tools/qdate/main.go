@@ -20,7 +20,8 @@ func getCurrDate() time.Time {
 }
 
 func getDays() {
-	// work in progress
+	// TO-DO:
+	// make lines 25 to 31 one function
 	days := flag.String("d", "d20", "Measures of time: day, month, year. Format: dX where X is the number of days")
 
 	numDays := (*days)[1:]
@@ -29,6 +30,8 @@ func getDays() {
 		log.Fatal(err)
 	}
 
+	// TO-DO:
+	// use AddDate() instead of Add(), cleaner and more consistent
 	//current_date.Add(time.Hour * 24 * time.Duration(d))
 	desired_date := getCurrDate().Add(time.Hour * 24 * time.Duration(d))
 	// %d
@@ -37,5 +40,9 @@ func getDays() {
 }
 
 func getMonths() {
+
+}
+
+func getYears() {
 
 }
