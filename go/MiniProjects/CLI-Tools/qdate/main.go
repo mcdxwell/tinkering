@@ -10,6 +10,7 @@ import (
 
 func main() {
 	getDays()
+	//getConv()
 }
 
 // return type: time.Time
@@ -22,20 +23,20 @@ func getCurrDate() time.Time {
 func getDays() {
 	// TO-DO:
 	// make lines 25 to 31 one function
-	days := flag.String("d", "d20", "Measures of time: day, month, year. Format: dX where X is the number of days")
+	// ----
+	// completed
+	days := flag.String("d", "d22", "Measures of time: day, month, year. Format: dX where X is the number of days")
 
-	numDays := (*days)[1:]
-	d, err := strconv.Atoi(numDays)
-	if err != nil {
-		log.Fatal(err)
-	}
+	dd := getConv(*&days)
 
 	// TO-DO:
 	// use AddDate() instead of Add(), cleaner and more consistent
-	//current_date.Add(time.Hour * 24 * time.Duration(d))
-	desired_date := getCurrDate().Add(time.Hour * 24 * time.Duration(d))
+	// https://pkg.go.dev/time#example-Time.Add
+	// ----
+	// completed
+	desired_dd := getCurrDate().AddDate(0, 0, dd)
 	// %d
-	fmt.Println("The date in days: ", desired_date.Format("01-02-2006"))
+	fmt.Printf("The date in %d days: %v", dd, desired_dd.Format("01-02-2006"))
 
 }
 
@@ -45,4 +46,14 @@ func getMonths() {
 
 func getYears() {
 
+}
+
+func getConv(toonies *string) int {
+
+	tUnits := (*toonies)[1:]
+	t, err := strconv.Atoi(tUnits)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return t
 }
