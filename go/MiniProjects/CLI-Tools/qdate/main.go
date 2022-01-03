@@ -57,7 +57,6 @@ func getYears() {
 	fmt.Printf("The date in %d years: %v", yyyy, desired_yyyy.Format("01-02-2006"))
 }
 
-
 // this needs to be refactored => use integer instead of string
 func getConv(toonies *string) int {
 
