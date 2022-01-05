@@ -10,8 +10,8 @@ func main() {
 
 	a := getRandNums(8)
 	fmt.Println("Unsorted: \n", a)
-	quicksort(a)
-	fmt.Println("Sorted: \n", a)
+	b := quicksort(a)
+	fmt.Println("Sorted: \n", b)
 
 }
 
