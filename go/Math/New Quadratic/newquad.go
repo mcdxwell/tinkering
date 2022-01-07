@@ -7,14 +7,14 @@ import (
 
 func newQuad(b float64, c float64) (float64, float64) {
 
-	quadPos := -b/2 + math.Sqrt(((math.Pow(b, 2))/4)-c)
-	quadNeg := -b/2 - math.Sqrt(((math.Pow(b, 2))/4)-c)
-	return quadPos, quadNeg
+	x1 := -b/2 + math.Sqrt(((math.Pow(b, 2))/4)-c)
+	x2 := -b/2 - math.Sqrt(((math.Pow(b, 2))/4)-c)
+	return x1, x2
 }
 
 func main() {
 
-	a, b := newQuad(2, -15)
-	fmt.Println(a)
-	fmt.Println(b)
+	x1, x2 := newQuad(5, 6)
+	fmt.Println(x1)
+	fmt.Println(x2)
 }
