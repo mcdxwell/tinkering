@@ -1,2 +1,0 @@
-# __Learning GO__
-
