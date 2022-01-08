@@ -16,7 +16,7 @@ func main() {
 }
 
 func getRandNums(size int) []int {
-	// using map/hashmap for "a" "array"
+	// using the data structure slice
 	a := make([]int, size, size)
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < size; i++ {
