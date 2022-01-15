@@ -40,4 +40,5 @@ func main() {
 	fmt.Println(<-rabChan)
 	fmt.Println(<-rabChan)
 	fmt.Println(<-rabChan)
+	fmt.Println()
 }
