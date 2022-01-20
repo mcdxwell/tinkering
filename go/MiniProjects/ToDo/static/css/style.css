@@ -1,0 +1,16 @@
+body {
+    background-color: steelblue;
+    color: black;
+    width: 50%;
+    margin: 0 auto;
+}
+
+ul li {
+    cursor: pointer;
+}
+
+.done {
+    text-shadow: black;
+    text-emphasis:black;
+    text-decoration: line-through;
+}
