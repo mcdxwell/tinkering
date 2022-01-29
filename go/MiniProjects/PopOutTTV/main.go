@@ -8,7 +8,11 @@ import (
 )
 
 // import "github.com/spf13/cobra"
-
+// To-Do:
+// Build a CLI tool to open:
+// twitch popout chat
+// twitch channel
+// and to open urls in general
 func PopOut(username string) {
 
 	var b strings.Builder
