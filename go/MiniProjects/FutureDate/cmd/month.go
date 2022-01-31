@@ -13,18 +13,18 @@ import (
 // 2. Create a print function where it can be called in each
 // of the commands instead of inside the getFunctions.
 
-var daysCmd = &cobra.Command{
-	Use:   "days",
-	Short: "Get desired day in given days.",
-	Long:  `Get desired day in given days.`,
+var monthsCmd = &cobra.Command{
+	Use:   "months",
+	Short: "Get desired month in given months.",
+	Long:  `Get desired month in given months.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) > 0 {
-			for _, days := range args {
+			for _, months := range args {
 
-				d, err := strconv.Atoi(days)
+				m, err := strconv.Atoi(months)
 				// make sure d, m, y are not any other type than a positive int
 				// note: cannot pass uint into whatDay() function.
-				whatDay(d)
+				whatMonth(m)
 
 				if err != nil {
 					fmt.Println(err)
@@ -32,16 +32,16 @@ var daysCmd = &cobra.Command{
 				}
 			}
 		} else {
-			fmt.Println("Please provide a number of days")
+			fmt.Println("Please provide a number of months")
 		}
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(daysCmd)
+	rootCmd.AddCommand(monthsCmd)
 }
 
-func whatDay(dd int) {
-	desired_dd := GetCurrDate().AddDate(0, 0, dd)
-	fmt.Printf("The date in %d days: %v\n", dd, desired_dd.Format("01-02-2006"))
+func whatMonth(mm int) {
+	desired_mm := GetCurrDate().AddDate(0, mm, 0)
+	fmt.Printf("The date in %d days: %v\n", mm, desired_mm.Format("01-02-2006"))
 }
