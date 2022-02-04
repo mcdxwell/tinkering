@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -81,6 +82,24 @@ func inverse(x, mod int) NilInt {
 		fmt.Println("Rem val lol:remainder.value \n", remainder.value)
 	}
 
+}
+
+func pas2(n float64) {
+
+	if n < 2 {
+		panic("n is less than 2")
+	}
+	k := n / 2
+	for {
+		maxf := math.Pow(10, n) - 1
+		maxf11 := (maxf-11)/22*22 + 11
+		minf := math.Pow(10, n) - math.Pow(10, n-k) + 1
+
+		if 2*k == n {
+			best := maxf * minf
+		}
+
+	}
 }
 
 func main() {
