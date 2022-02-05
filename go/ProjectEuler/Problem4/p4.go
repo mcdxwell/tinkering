@@ -125,6 +125,12 @@ func pas2(n float64) {
 
 	}
 
+	if factors {
+		return best, factors
+	} else {
+		k-=1
+	}
+
 }
 
 func main() {
