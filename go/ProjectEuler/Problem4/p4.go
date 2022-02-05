@@ -84,22 +84,47 @@ func inverse(x, mod int) NilInt {
 
 }
 
-func pas2(n float64) {
+type Factors struct {
+	min, max interface{}
+}
 
+func pas2(n float64) {
+	factors := Factors{}
+	fmt.Println(factors)
+	maxf11 := 0.0
 	if n < 2 {
 		panic("n is less than 2")
 	}
 	k := n / 2
 	for {
 		maxf := math.Pow(10, n) - 1
-		maxf11 := (maxf-11)/22*22 + 11
+		maxf11 = (maxf-11)/22*22 + 11
 		minf := math.Pow(10, n) - math.Pow(10, n-k) + 1
 
 		if 2*k == n {
 			best := maxf * minf
+			factors = Factors{maxf, minf}
+			if isPalindrome(int(best)) {
+				panic("n is less than 2")
+			}
+		} else {
+			best := minf * maxf
+			fmt.Println(best)
+			factors = Factors{nil, nil}
+			continue
+		}
+	}
+
+	for x := 0.0; x < maxf11; {
+		mod := math.Pow(10, k)
+		x -= 22
+
+		if x*maxf < best {
+
 		}
 
 	}
+
 }
 
 func main() {
