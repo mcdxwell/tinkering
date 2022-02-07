@@ -120,15 +120,23 @@ func pas2(n float64) {
 		x -= 22
 
 		if x*maxf < best {
-
+			break
 		}
+
+		ry := inverse(x, mod)
+
+		if ry == nil {
+			continue
+		}
+
+		maxy := maxf + 1 - ry
 
 	}
 
 	if factors {
 		return best, factors
 	} else {
-		k-=1
+		k -= 1
 	}
 
 }
