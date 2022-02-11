@@ -14,7 +14,7 @@
 
 ## __Notes__:
 
-With the following [URL](https://www.merriam-webster.com/word-of-the-day/):
+With the following URL: https://www.merriam-webster.com/word-of-the-day/
 
 One can append `ANY` date from 2006-10-10 `(YYYY-MM-DD)` to now.
 
