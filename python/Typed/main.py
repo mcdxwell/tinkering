@@ -112,13 +112,28 @@ class Person(Names):
             print("Allowed")
             True
 
-p0 = Person("John", "Buck", "Doe", 18, "blue")
 
+
+
+class Employee(object):
+    def __init__(self, p, wage, job):
+        #super().__init__(f, m, l, age, eye, wage, job)
+        self.p = p
+        self.wage = wage
+        self.job = job
+
+    def get_emp(self):
+        print(self.p)
+    def get_job(self):
+        print(self.job)
+    def get_wage(self):
+        print(self.wage)
+
+p0 = Person("John", "Buck", "Doe", 18, "blue")
+e0 = Employee(p0, 1000, "Washer")
 p0.full_name()
 p0.get_age()
 p0.age_limit()
-
-
-
-
+e0.get_wage()
+e0.get_job()
 
