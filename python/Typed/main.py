@@ -92,17 +92,31 @@ class Names(object):
 
 class Person(Names):
 
-    def __init__(self, f, m, l, dob, eye):
-        self.dob = dob
+    def __init__(self, f, m, l, age, eye):
+        self.age = age
         self.eye_color = eye
         Names.__init__(self, f, m, l)
-
+     
     def full_name(self):
         print(self.first, self.middle, self.last)
-        
-p0 = Person("John", "Buck", "Doe", "1-1-1111", "blue")
+
+    def get_age(self):
+        print(self.age)
+        return self.age
+
+    def age_limit(self):
+        if self.age < 18:
+            print("Under 18")
+            return False
+        else:
+            print("Allowed")
+            True
+
+p0 = Person("John", "Buck", "Doe", 18, "blue")
 
 p0.full_name()
+p0.get_age()
+p0.age_limit()
 
 
 
