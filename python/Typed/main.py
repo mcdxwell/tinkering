@@ -1,4 +1,3 @@
-
 def add(a: int, b: int) -> int:
     return a + b
 
@@ -85,9 +84,25 @@ def tx_area_codes(code) -> str:
 print(tx_area_codes(281))
 # Output: Houston
 
+class Names(object):
+    def __init__(self, f, m, l) :
+        self.first = f
+        self.middle = m
+        self.last = l
 
+class Person(Names):
 
+    def __init__(self, f, m, l, dob, eye):
+        self.dob = dob
+        self.eye_color = eye
+        Names.__init__(self, f, m, l)
 
+    def full_name(self):
+        print(self.first, self.middle, self.last)
+        
+p0 = Person("John", "Buck", "Doe", "1-1-1111", "blue")
+
+p0.full_name()
 
 
 
