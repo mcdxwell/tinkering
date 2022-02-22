@@ -137,3 +137,13 @@ p0.age_limit()
 e0.get_wage()
 e0.get_job()
 
+
+# Postfix parameter type (int)
+# return type (int)
+def funky(number: int) -> int:
+    # if (assign square to number^2) is greater than 5
+    #     print square
+    if (square := number**2) > 5:
+        print(f"The square of {number} is {square}")
+        return square
+x = funky(10)
