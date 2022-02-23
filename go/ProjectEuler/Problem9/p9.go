@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func testTriplet(a int, b int, c int) bool {
+func testTriplet(a, b, c int) bool {
 	return (a*a + b*b) == c*c
 }
 
