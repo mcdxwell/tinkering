@@ -11,4 +11,5 @@ To improve on what I found, I generated the Pythagorean triplets and checked eac
 Useful references:
 
 https://en.wikipedia.org/wiki/Formulas_for_generating_Pythagorean_triples
+
 https://www.chilimath.com/lessons/geometry-lessons/generating-pythagorean-triples/
