@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func sieveOfAtkins(limit int) {
+func sieveOfAtkins(ch chan int, limit int) {
 	if limit > 2 {
 		fmt.Printf("2 ")
 	}
@@ -13,10 +13,10 @@ func sieveOfAtkins(limit int) {
 		fmt.Printf("3 ")
 	}
 
-	sieve := make([]bool, limit)
+	sieve := make([]bool, limit+1)
 
 	for i := 0; i < limit; i++ {
-		sieve[i] = false
+		sieve = append(sieve, false)
 	}
 
 	for x := 1; x*x < limit; x++ {
@@ -57,12 +57,17 @@ func sieveOfAtkins(limit int) {
 
 	for a := 5; a < limit; a++ {
 		if sieve[a] {
-			fmt.Printf("%d ", a)
+			ch <- a
 		}
 	}
 
 }
 
 func main() {
-	sieveOfAtkins(2000000)
+	prime_sum := uint64(0)
+	ch := make(chan int)
+	go sieveOfAtkins(ch, 2000000)
+	for prime := range ch {
+		prime_sum += uint64(prime)
+	}
 }
