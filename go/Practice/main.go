@@ -1,31 +1,37 @@
 package main
 
 type units interface {
-	Celcius() float64
+	Celsius() float64
 	Fahrenheit() float64
 	Kelvin() float64
 }
 
-type kelvin struct {
-	temp float64
+type celsius struct{ temp float64 }
+type fahrenheit struct{ temp float64 }
+type kelvin struct{ temp float64 }
+
+func (k kelvin) Celsius() float64 {
+	return k.temp - 273.15
 }
 
-type celcius struct {
-	temp float64
+func (f fahrenheit) Celsius() float64 {
+	return (f.temp - 32) * 5 / 9
 }
 
-type fahrenheit struct {
-	temp float64
+func (k kelvin) Fahrenheit() float64 {
+	return (k.temp-273.15)*9/5 + 32
 }
 
-type myUnits struct {
-	cels float64
-	kelv float64
-	fahr float64
+func (c celsius) Fahrenheit() float64 {
+	return (c.temp * 9 / 5) + 32
 }
 
-func (k kelvin) Celcius() float64 {
-	return 1234
+func (c celsius) Kelvin() float64 {
+	return c.temp + 273.15
+}
+
+func (f fahrenheit) Kelvin() float64 {
+	return (f.temp-32)*5/9 + 273.15
 }
 
 func main() {
