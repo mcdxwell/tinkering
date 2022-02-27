@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type units interface {
 	Celsius() float64
 	Fahrenheit() float64
@@ -35,5 +37,6 @@ func (f fahrenheit) Kelvin() float64 {
 }
 
 func main() {
-
+	c := celsius{10}.Fahrenheit()
+	fmt.Println(c)
 }
