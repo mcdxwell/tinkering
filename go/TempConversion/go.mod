@@ -1,3 +1,3 @@
-module tinkering/go/Practice
+module tinkering/go/TempConversion
 
 go 1.17
