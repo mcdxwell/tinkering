@@ -5,54 +5,53 @@ import (
 	"math"
 	"math/rand"
 	"strconv"
-	"strings"
 )
 
-func quickSort(array []int) []int {
-	if len(array) < 2 {
-		return array
+func quickSort(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
 	}
 
-	left, right := 0, len(array)-1
+	left, right := 0, len(arr)-1
 
 	// Pick a pivot
-	pivotIndex := rand.Int() % len(array)
+	pivotIndex := rand.Int() % len(arr)
 
 	// Move the pivot to the right
-	array[pivotIndex], array[right] = array[right], array[pivotIndex]
+	arr[pivotIndex], arr[right] = arr[right], arr[pivotIndex]
 
-	// Pile elemenarray smaller than the pivot on the left
-	for i := range array {
-		if array[i] < array[right] {
-			array[i], array[left] = array[left], array[i]
+	// Pile elemenarr smaller than the pivot on the left
+	for i := range arr {
+		if arr[i] < arr[right] {
+			arr[i], arr[left] = arr[left], arr[i]
 			left++
 		}
 	}
 
 	// Place the pivot after the lrrayast smaller element
-	array[left], array[right] = array[right], array[left]
+	arr[left], arr[right] = arr[right], arr[left]
 
 	// Go down the rabbit hole
-	quickSort(array[:left])
-	quickSort(array[left+1:])
-	//fmt.Println(array)
-	return array
+	quickSort(arr[:left])
+	quickSort(arr[left+1:])
+	//fmt.Println(arr)
+	return arr
 
 }
 
 // compute closest number to 0
-func ComputeClosest(array []int) int {
+func computeClosest(arr []int) int {
 
-	if len(array) == 0 {
+	if len(arr) == 0 {
 		return 0
 	}
 
-	if len(array) == 1 {
-		return array[0]
+	if len(arr) == 1 {
+		return arr[0]
 	}
 
 	s := make([]int, 0)
-	for _, v := range array {
+	for _, v := range arr {
 		s = append(s, int(math.Abs(float64(v))))
 	}
 	sortedS := quickSort(s)
@@ -65,50 +64,46 @@ func ComputeClosest(array []int) int {
 	return -1
 }
 
-func removeDupes(array []int) []int {
-
-	keys := make(map[int]bool)
-	list := make([]int, 0)
-
-	for _, num := range array {
-		if _, value := keys[num]; !value {
-			keys[num] = true
-			list = append(list, num)
-		}
-	}
-	fmt.Println(list)
-	return list
-}
-
-func isSubsequence(s, t string) bool {
-
-	//myChars := make([]string, 0)
-
-	for i := 0; i < len(t); i++ {
-		fmt.Println(t[i])
-	}
-
-	return strings.ContainsAny(s, t)
-}
-
-func twoDigits(nums int) bool {
-
-	mynums := strconv.Itoa(nums)
-	checkers := make([]int, 0)
-	for i, char := range mynums {
-		fmt.Printf("Loop %d: char%v\n", i, char)
-		checkers = append(checkers, int(char))
-		//check_nums := strconv.Atoi()
-	}
+func removeDupes(arr []int) []int {
 
 	set := make(map[int]bool)
 	newSet := make([]int, 0)
-	for _, num := range checkers {
+	for _, num := range arr {
 		if _, value := set[num]; !value {
 			set[num] = true
 			newSet = append(newSet, num)
 		}
 	}
+	return newSet
+}
+
+func isSubsequence(s, t string) bool {
+
+	i, j := 0, 0
+	for i < len(s) && j < len(t) {
+		for ; j < len(t); j++ {
+			if s[i] == t[j] {
+				i++
+				j++
+				break
+			}
+		}
+	}
+	return i == len(s) && j <= len(t)
+
+}
+
+func twoDigits(nums int) bool {
+
+	newNums := strconv.Itoa(nums)
+	myRunes := make([]int, 0)
+	for i, num := range newNums {
+		fmt.Printf("Loop %d: num: %v\n", i, num)
+		myRunes = append(myRunes, int(num))
+	}
+	fmt.Println("MyRunes:", myRunes)
+	newSet := removeDupes(myRunes)
+
 	fmt.Println("New Set: ", newSet)
 	if len(newSet) > 2 {
 		fmt.Println("False")
@@ -120,14 +115,14 @@ func twoDigits(nums int) bool {
 
 func main() {
 
-	array := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
-	ComputeClosest(array)
-	removeDupes(array)
-	s, t := "cba", "ahbgdc"
+	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
+	computeClosest(arr)
+	removeDupes(arr) */
+	s, t := "aaa", "ahbgdc"
 	isSubsequence(s, t)
 
-	duo := 1001
+	/* duo := 1001
 	trio := 123
 	twoDigits(duo)
-	twoDigits(trio)
+	twoDigits(trio) */
 }
