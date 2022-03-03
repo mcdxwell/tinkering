@@ -113,6 +113,24 @@ func twoDigits(nums int) bool {
 	return true
 }
 
+func numOfArithSlices(nums []int) int {
+
+	if len(nums) < 3 {
+		return 0
+	}
+	dp, result := 0, 0
+	for i := 2; i < len(nums); i++ {
+		diff := (nums[i] - nums[i-1]) - (nums[i-1] - nums[i-2])
+		if diff == 0 {
+			dp++
+			result += dp
+		} else {
+			dp = 0
+		}
+	}
+	return result
+}
+
 func main() {
 
 	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
@@ -120,7 +138,8 @@ func main() {
 	removeDupes(arr) */
 	s, t := "aaa", "ahbgdc"
 	isSubsequence(s, t)
-
+	nums := []int{1, 2, 3, 4}
+	numOfArithSlices(nums)
 	/* duo := 1001
 	trio := 123
 	twoDigits(duo)
