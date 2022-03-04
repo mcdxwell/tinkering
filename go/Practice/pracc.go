@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"sort"
 	"strconv"
 )
 
@@ -251,6 +252,87 @@ func longestSubStrr(s string) int {
 	return maxlen
 }
 
+// 1338 reduce array size to half
+// return minimum size set so at least half...
+func halfArray(arr []int) int {
+
+	/* myMap := make(map[int]int)
+
+	for _, v := range arr {
+		// if a key in my map does or does not have a count
+		// 		increment count by 1
+		if _, count := myMap[v]; !count || count {
+			myMap[v] += 1
+		}
+	}
+
+	//i := 0
+	//limit := len(arr) / 2
+	numbers := make([]int, 0)
+	counts := make([]int, 0)
+	for key, val := range myMap {
+		numbers = append(numbers, key)
+		counts = append(counts, val)
+	}
+	*/
+
+	setSize := 0 // the elements removed from the array create the set
+
+	myMap := make(map[int]int)
+	arrSize := len(arr)
+	halfArr := arrSize / 2
+
+	for _, v := range arr {
+		myMap[v]++
+	}
+
+	elmntCounts := make([]int, 0)
+	for _, v := range myMap {
+		elmntCounts = append(elmntCounts, v)
+	}
+
+	sort.Ints(elmntCounts)
+	sumOfElements := 0
+	for i := len(elmntCounts) - 1; i >= 0; i-- {
+		if sumOfElements >= halfArr {
+			return setSize
+		}
+		sumOfElements += elmntCounts[i]
+		setSize++
+	}
+	return setSize
+}
+
+func minSetSize(arr []int) int {
+	counts := getCounts(arr)
+	target := len(arr) / 2
+	totalRemoved := 0
+
+	for i := range counts {
+		totalRemoved += counts[i]
+		if totalRemoved >= target {
+			return i + 1
+		}
+	}
+	return 0
+}
+
+func getCounts(arr []int) []int {
+	myMap := make(map[int]int)
+	for _, v := range arr {
+		myMap[v]++
+	}
+
+	counts := make([]int, 0)
+
+	for _, count := range myMap {
+		counts = append(counts, count)
+	}
+
+	sort.Sort(sort.Reverse(sort.IntSlice(counts)))
+	return counts
+}
+
 func main() {
 
 	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
@@ -274,10 +356,12 @@ func main() {
 	twoDigits(duo)
 	twoDigits(trio) */
 
-	s := "abcsadsa"
-	//ss := "aaaaaaa"
-
-	longestSubStr(s)
+	//longestSubStr(s)
 	//longestSubStrr(ss)
-	longestSubStrr(s)
+	//longestSubStrr(s)
+
+	array := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
+	halfArray(array)
+	array = []int{5, 4, 4, 4, 1, 2, 2, 3, 3, 3}
+	halfArray(array)
 }
