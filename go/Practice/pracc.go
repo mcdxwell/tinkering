@@ -333,6 +333,36 @@ func getCounts(arr []int) []int {
 	return counts
 }
 
+// basic
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+
+	mergedArray := make([]int, 0)
+	for i := range nums1 {
+		mergedArray = append(mergedArray, nums1[i])
+	}
+	for i := range nums2 {
+		mergedArray = append(mergedArray, nums2[i])
+	}
+	sort.Ints(mergedArray)
+	fmt.Println(mergedArray)
+
+	arrSize := len(mergedArray)
+	if arrSize%2 == 0 {
+		nIndex := arrSize / 2
+		mIndex := nIndex - 1
+		adding := mergedArray[nIndex] + mergedArray[mIndex]
+		fmt.Println(adding)
+		median := float64(adding) * 0.5
+		fmt.Println("Even: ", median)
+		return float64(median)
+	} else {
+		index := int(math.Floor(float64(arrSize) / 2))
+		median := float64(mergedArray[index])
+		fmt.Println("Odd: ", median)
+		return median
+	}
+}
+
 func main() {
 
 	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
@@ -360,8 +390,9 @@ func main() {
 	//longestSubStrr(ss)
 	//longestSubStrr(s)
 
-	array := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
-	halfArray(array)
-	array = []int{5, 4, 4, 4, 1, 2, 2, 3, 3, 3}
-	halfArray(array)
+	array := []int{1, 2}
+	array2 := []int{3, 4}
+	findMedianSortedArrays(array, array2)
+	//halfArray(array)
+	//halfArray(array)
 }
