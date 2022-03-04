@@ -131,17 +131,153 @@ func numOfArithSlices(nums []int) int {
 	return result
 }
 
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	// We'll use l1 to write the results in, so we need to store the head
+	carry, head := 0, l1
+	for {
+		// Add the two nodes' values and the carry, write to l1
+		l1.Val += l2.Val + carry
+
+		// Check for carry and update l1's value
+		carry = int(float64(l1.Val) * 0.1)
+		l1.Val = l1.Val % 10 // or l1.Next.Val - (carry * 10)
+
+		// As soon as either of the  runs out we're done with this loop
+		if l2.Next == nil {
+			break
+		} else if l1.Next == nil {
+			l1.Next = l2.Next
+			break
+		}
+
+		// Advance!
+		l1 = l1.Next
+		l2 = l2.Next
+	}
+
+	// We'll now apply the carry to l1, adding nodes as needed
+	for carry != 0 {
+		// If there is a carry and l1.Next is null, add another node to the list
+		if l1.Next == nil {
+			l1.Next = &ListNode{0, nil}
+		}
+
+		// Same as the first loop, just using one list and the carry
+		l1.Next.Val += carry
+
+		carry = l1.Next.Val / 10
+		l1.Next.Val = l1.Next.Val % 10
+
+		// Advance!
+		l1 = l1.Next
+	}
+
+	return head
+}
+
+// source: leet code - > fast
+func longestSubStr(s string) int {
+
+	chars := []rune(s)
+	output, start := 0, 0
+	chMap := make(map[rune]int)
+	for i, ch := range chars {
+		if value, exist := chMap[ch]; exist && value >= start {
+			//chMap = make(map[rune]int)
+			chMap[ch] = i
+			start = value + 1
+		} else {
+			chMap[ch] = i
+			length := i - start + 1
+			if output < length {
+				output = length
+			}
+		}
+	}
+	fmt.Println(output)
+	return output
+}
+
+// source: leetcode -> insanely fast and memory efficient
+func longestSubStrr(s string) int {
+	freqarr := make([]int, 95)
+	maxlen := 0
+	currlen := 0
+	startidx := 1
+	roonies := make([]rune, 0)
+	intoonies := make([]int, 0)
+	for i, r := range s {
+		fmt.Println(i)
+		roonies = append(roonies, r)
+		intoonies = append(intoonies, int(r))
+		idx := int(r) - 32
+
+		if freqarr[idx] >= startidx {
+			startidx = freqarr[idx] + 1
+		}
+		fmt.Println("Freqarr before:", freqarr[idx])
+		freqarr[idx] = i + 1
+		fmt.Println("Freqarr after:", freqarr[idx])
+		currlen = i + 1 - startidx + 1
+		if currlen > maxlen {
+			maxlen = currlen
+		}
+	}
+
+	fmt.Println(roonies)
+	fmt.Println(intoonies)
+	fmt.Println(freqarr)
+	fmt.Println(maxlen)
+	return maxlen
+}
+
 func main() {
 
 	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
 	computeClosest(arr)
-	removeDupes(arr) */
+	removeDupes(arr)
 	s, t := "aaa", "ahbgdc"
 	isSubsequence(s, t)
 	nums := []int{1, 2, 3, 4}
 	numOfArithSlices(nums)
-	/* duo := 1001
+	l1 := new(ListNode)
+	l2 := new(ListNode)
+	for i := 0; i <= 10; i++ {
+		l1.Val = i
+		l2.Val = i
+		l1 = l1.Next
+		l2 = l2.Next
+	}
+	addTwoNumbers(l1, l2)
+	duo := 1001
 	trio := 123
 	twoDigits(duo)
 	twoDigits(trio) */
+
+	s := "abcsadsa"
+	//ss := "aaaaaaa"
+
+	longestSubStr(s)
+	//longestSubStrr(ss)
+	longestSubStrr(s)
 }
