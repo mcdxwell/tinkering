@@ -363,6 +363,44 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	}
 }
 
+func deleteAndEarn(nums []int) int {
+	m := nums[0]
+	for _, v := range nums {
+		if v > m {
+			m = v
+		}
+	}
+
+	n := m + 1
+	values := make([]int, n)
+	fmt.Println("Values: ", values)
+	for _, num := range nums {
+		fmt.Println("Num:", num)
+		values[num] += num
+		fmt.Println("values[num]: ", values[num])
+	}
+	fmt.Println(values)
+	var take, skip int
+	for i := 0; i < n; i++ {
+		fmt.Println("First: ", take, skip)
+		takei := skip + values[i]
+		skipi := max(skip, take)
+		take = takei
+		skip = skipi
+		fmt.Println("Second: ", take, skip)
+	}
+	fmt.Println(max(take, skip))
+	return max(take, skip)
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+
+	return b
+}
+
 func main() {
 
 	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
@@ -390,9 +428,18 @@ func main() {
 	//longestSubStrr(ss)
 	//longestSubStrr(s)
 
-	array := []int{1, 2}
-	array2 := []int{3, 4}
-	findMedianSortedArrays(array, array2)
+	//array := []int{1, 2}
+	//array2 := []int{3, 4}
+	//findMedianSortedArrays(array, array2)
 	//halfArray(array)
 	//halfArray(array)
+	//array3 := []int{3, 4, 2}
+	array4 := []int{2, 2, 3, 3, 3, 4}
+	array5 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	array6 := []int{5, 5, 5, 5, 5, 4, 6, 7}
+
+	//deleteAndEarn(array3)
+	deleteAndEarn(array4)
+	deleteAndEarn(array5)
+	deleteAndEarn(array6)
 }
