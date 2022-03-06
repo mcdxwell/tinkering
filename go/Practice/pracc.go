@@ -401,6 +401,37 @@ func max(a, b int) int {
 	return b
 }
 
+func longestPalindrome(s string) string {
+	if len(s) == 0 || len(s) == 1 {
+		return s
+	}
+
+	left, max
+
+	ss := []rune(s)
+	i, j := 0, 0
+
+	for range s {
+		ss[i]
+	}
+}
+
+func isPalindrome(s []rune) bool {
+
+	roons := make([]rune, 0)
+	for i := len(s) - 1; i >= 0; i-- {
+		roons = append(roons, s[i])
+	}
+
+	if string(s) == string(roons) {
+		fmt.Println("true")
+		return true
+	} else {
+		fmt.Println("false")
+		return false
+	}
+}
+
 func main() {
 
 	/* arr := []int{-2, -7, -2, 12, 10, 4, 2, 18, 11, 4}
@@ -434,12 +465,15 @@ func main() {
 	//halfArray(array)
 	//halfArray(array)
 	//array3 := []int{3, 4, 2}
-	array4 := []int{2, 2, 3, 3, 3, 4}
-	array5 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	array6 := []int{5, 5, 5, 5, 5, 4, 6, 7}
+	// array4 := []int{2, 2, 3, 3, 3, 4}
+	// array5 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	// array6 := []int{5, 5, 5, 5, 5, 4, 6, 7}
 
 	//deleteAndEarn(array3)
-	deleteAndEarn(array4)
-	deleteAndEarn(array5)
-	deleteAndEarn(array6)
+	// deleteAndEarn(array4)
+	// deleteAndEarn(array5)
+	// deleteAndEarn(array6)
+	s := "babad"
+	s = "bab"
+	isPalindrome([]rune(s))
 }
