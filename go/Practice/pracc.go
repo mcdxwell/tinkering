@@ -406,14 +406,16 @@ func longestPalindrome(s string) string {
 		return s
 	}
 
-	left, max
+	//left, max
 
 	ss := []rune(s)
 	i, j := 0, 0
 
 	for range s {
-		ss[i]
+		x := ss[i]
+		fmt.Println(ss, x, j)
 	}
+	return ""
 }
 
 func isPalindrome(s []rune) bool {
@@ -430,6 +432,48 @@ func isPalindrome(s []rune) bool {
 		fmt.Println("false")
 		return false
 	}
+}
+
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	mergedList := &ListNode{}
+	head := mergedList
+
+	for list1 != nil && list2 != nil {
+		if list1.Val < list2.Val {
+			mergedList.Next = list1
+
+			list1 = list1.Next
+		} else {
+			mergedList.Next = list2
+
+			list2 = list2.Next
+		}
+		mergedList.Next.Next = nil
+		mergedList = mergedList.Next
+	}
+	if list1 != nil {
+		for cur := list1; cur != nil; {
+			next := cur.Next
+			mergedList.Next = cur
+			mergedList.Next.Next = nil
+
+			cur = next
+			mergedList = mergedList.Next
+		}
+	}
+	if list2 != nil {
+		for cur := list2; cur != nil; {
+			next := cur.Next
+
+			mergedList.Next = cur
+			mergedList.Next.Next = nil
+
+			cur = next
+			mergedList = mergedList.Next
+		}
+	}
+
+	return head.Next
 }
 
 func main() {
@@ -473,7 +517,13 @@ func main() {
 	// deleteAndEarn(array4)
 	// deleteAndEarn(array5)
 	// deleteAndEarn(array6)
-	s := "babad"
-	s = "bab"
-	isPalindrome([]rune(s))
+	//s := "babad"
+	//s = "bab"
+	//isPalindrome([]rune(s))
+	hello := new(ListNode)
+	hello2 := new(ListNode)
+	hello.Val = 10
+	hello2.Val = 0
+
+	mergeTwoLists(hello, hello2)
 }
