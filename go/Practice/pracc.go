@@ -472,8 +472,24 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 			mergedList = mergedList.Next
 		}
 	}
-
+	fmt.Println(mergedList)
+	fmt.Println(head.Next)
 	return head.Next
+}
+
+func hasCycle(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+
+	pointerA := head
+	pointerB := head.Next
+
+	for pointerB.Next != nil && pointerB.Next.Next != nil && pointerB != pointerA {
+		pointerA = pointerA.Next
+		pointerB = pointerB.Next.Next
+	}
+	return pointerA == pointerB
 }
 
 func main() {
@@ -523,7 +539,8 @@ func main() {
 	hello := new(ListNode)
 	hello2 := new(ListNode)
 	hello.Val = 10
-	hello2.Val = 0
+	hello.Val = 2
+	hello2.Val = 7
 
 	mergeTwoLists(hello, hello2)
 }
