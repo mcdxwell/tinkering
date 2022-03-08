@@ -43,5 +43,5 @@ func init() {
 
 func whatYear(yyyy int) {
 	desired_yyyy := GetCurrDate().AddDate(yyyy, 0, 0)
-	fmt.Printf("The date in %d days: %v\n", yyyy, desired_yyyy.Format("01-02-2006"))
+	fmt.Printf("The date in %d years: %v\n", yyyy, desired_yyyy.Format("01-02-2006"))
 }

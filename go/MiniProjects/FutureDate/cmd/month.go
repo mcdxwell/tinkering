@@ -43,5 +43,5 @@ func init() {
 
 func whatMonth(mm int) {
 	desired_mm := GetCurrDate().AddDate(0, mm, 0)
-	fmt.Printf("The date in %d days: %v\n", mm, desired_mm.Format("01-02-2006"))
+	fmt.Printf("The date in %d months: %v\n", mm, desired_mm.Format("01-02-2006"))
 }
