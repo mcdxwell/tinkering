@@ -76,6 +76,15 @@ func getRandomDate() string {
 	randomDay := rand.Intn(d - 0)
 	randomDate := today.AddDate(0, 0, -randomDay).Format("2006-01-02")
 
+	// TODO: Make this a function that can be used to
+	// append the wotd and random words to the json file.
+	datey := word{
+		Date: randomDate,
+	}
+
+	dateys := getWord()
+	dateys = append(dateys, datey)
+	saveWordo(dateys)
 	return randomDate
 
 }

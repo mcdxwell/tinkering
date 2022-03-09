@@ -30,6 +30,20 @@ func getWord() (wotd []word) {
 	return wotd
 }
 
+func saveWordo(w []word) {
+	wordData, err := json.Marshal(w)
+
+	if err != nil {
+		panic(err)
+	}
+
+	err = os.WriteFile("./wotd.json", wordData, 0644)
+
+	if err != nil {
+		panic(err)
+	}
+}
+
 func saveWord(w []word) {
 	wordData, err := json.Marshal(w)
 
