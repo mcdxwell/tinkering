@@ -19,9 +19,10 @@ const wotdURL = "https://www.merriam-webster.com/word-of-the-day/"
 
 func main() {
 
-	/* getCmd := flag.NewFlagSet("", flag.ExitOnError) //today
+	getCmd := flag.NewFlagSet("get", flag.ExitOnError) //today
 	//getToday := getCmd.Bool("today", false, "Get today's WOTD")
-	getRandom := getCmd.Bool("random", false, "Get random word")
+	//getRandom := getCmd.Bool("random", false, "Get random word")
+	rndCmd := flag.NewFlagSet("random", flag.ExitOnError)
 	getDate := getCmd.String("date", "", "Get word on this date")
 
 	if len(os.Args) < 2 {
@@ -30,25 +31,36 @@ func main() {
 	}
 
 	switch os.Args[1] {
-	case "":
-		HandleGet()
+	case "get":
+		HandleGet(getCmd, getDate)
+	case "random":
+		HandleRnd(rndCmd)
+	default:
 	}
-	urls := []string{
-		"https://www.merriam-webster.com/word-of-the-day",
-		"https://www.merriam-webster.com/word-of-the-day/2021-10-10",
-	} */
-	getDateURL()
-	showTitles(wotdURL)
+
+	//getDateURL()
+	//showTitles(wotdURL)
 	//fmt.Println(getDateURL())
 }
 
-func HandleGet(getCmd *flag.FlagSet, random *bool, date *string) {
+func HandleGet(getCmd *flag.FlagSet, date *string) {
 
 	getCmd.Parse(os.Args[2:])
 
-	if *random == false && *date == "" {
-
+	if *date == "" {
+		showTitles(wotdURL)
 	}
+
+	if *date != "" {
+		//date := *date
+		fmt.Println("Date func")
+	}
+}
+
+func HandleRnd(rndCmd *flag.FlagSet) {
+	rndCmd.Parse(os.Args[2:])
+
+	showTitles(getDateURL())
 }
 
 // Creates a random date between 2006-10-10 to the current date
