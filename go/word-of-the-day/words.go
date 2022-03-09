@@ -2,20 +2,32 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"os"
 )
 
 type word struct {
+	Date       string
 	Word       string
 	Class      string // major form classes (noun, verb, adjective, and adverb)
 	Meaning    string
 	Definition string
 	Example    string
-	Date       string
 }
 
-func getWord() {
+func getWord() (wotd []word) {
+	wordData, err := os.ReadFile("./wotd.json")
 
+	if err != nil {
+		panic(err)
+	}
+
+	err = json.Unmarshal(wordData, &wotd)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return wotd
 }
 
 func saveWord(w []word) {
@@ -25,7 +37,7 @@ func saveWord(w []word) {
 		panic(err)
 	}
 
-	err = ioutil.WriteFile("./words.json", wordData, 0644)
+	err = os.WriteFile("./wotd.json", wordData, 0644)
 
 	if err != nil {
 		panic(err)

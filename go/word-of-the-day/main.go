@@ -15,36 +15,38 @@ import (
 
 var wg sync.WaitGroup
 
+const wotdURL = "https://www.merriam-webster.com/word-of-the-day/"
+
 func main() {
 
-	//getCmd := flag.NewFlagSet("get", flag.ExitOnError)
+	/* getCmd := flag.NewFlagSet("", flag.ExitOnError) //today
 	//getToday := getCmd.Bool("today", false, "Get today's WOTD")
-	//getRandom := getCmd.Bool("random", false, "Get random word")
-	//getDate := getCmd.String("date", "", "Get word on this date")
+	getRandom := getCmd.Bool("random", false, "Get random word")
+	getDate := getCmd.String("date", "", "Get word on this date")
 
-	/* if len(os.Args) < 2 {
+	if len(os.Args) < 2 {
 		fmt.Println("expected `get` subcommand")
 		os.Exit(1)
 	}
 
 	switch os.Args[1] {
-	case "get":
+	case "":
 		HandleGet()
-	} */
-	/* urls := []string{
+	}
+	urls := []string{
 		"https://www.merriam-webster.com/word-of-the-day",
 		"https://www.merriam-webster.com/word-of-the-day/2021-10-10",
 	} */
 	getDateURL()
-	//showTitles(urls)
+	showTitles(wotdURL)
 	//fmt.Println(getDateURL())
 }
 
-func HandleGet(getCmd *flag.FlagSet, today *bool, random *bool, date *string) {
+func HandleGet(getCmd *flag.FlagSet, random *bool, date *string) {
 
 	getCmd.Parse(os.Args[2:])
 
-	if true {
+	if *random == false && *date == "" {
 
 	}
 }
@@ -70,31 +72,31 @@ func getRandomDate() string {
 func getDateURL() string {
 
 	var url strings.Builder
-	url.WriteString("https://www.merriam-webster.com/word-of-the-day/")
+	url.WriteString(wotdURL)
 	url.WriteString(getRandomDate())
 	fmt.Println(url.String())
 
 	return url.String()
 }
 
-func showTitles(urls []string) {
+func showTitles(url string) {
 
-	c := getTitleTags(urls)
-
+	c := getTitleTags(url)
+	wordy := make([]string, 0)
 	for msg := range c {
-
-		fmt.Println(msg)
+		wordy = append(wordy, msg)
 	}
+
+	fmt.Println(wordy[0])
+
 }
 
-func getTitleTags(urls []string) chan string {
+func getTitleTags(url string) chan string {
 
 	c := make(chan string)
 
-	for _, url := range urls {
-		wg.Add(1)
-		go getTitle(url, c)
-	}
+	wg.Add(1)
+	go getTitle(url, c)
 
 	go func() {
 		wg.Wait()
@@ -105,6 +107,8 @@ func getTitleTags(urls []string) chan string {
 	return c
 }
 
+// Helpful reference
+// https://zetcode.com/golang/net-html/
 func getTitle(url string, c chan string) {
 
 	defer wg.Done()
