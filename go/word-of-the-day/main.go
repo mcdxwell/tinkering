@@ -34,9 +34,6 @@ const wotdURL = "https://www.merriam-webster.com/word-of-the-day/"
 // If the date already exists in the json file, fetch word info from the json file. Else, fetch from the webpage.
 func main() {
 
-	res := strings.ReplaceAll("Word of the Day: Castigate | Merriam-Webster", "Word of the Day: ", "")
-	res = strings.ReplaceAll(res, " | Merriam-Webster", "")
-	fmt.Println(res)
 	getCmd := flag.NewFlagSet("get", flag.ExitOnError) //today
 	//getToday := getCmd.Bool("today", false, "Get today's WOTD")
 	//getRandom := getCmd.Bool("random", false, "Get random word")
@@ -64,9 +61,10 @@ func main() {
 func HandleGet(getCmd *flag.FlagSet, date *string) {
 
 	getCmd.Parse(os.Args[2:])
-
+	today := time.Now().UTC()
 	if *date == "" {
-		showTitles(wotdURL)
+		fmt.Println(today.Format("2006-01-02"))
+		checkDate(today.Format("2006-01-02"))
 	}
 
 	if *date != "" {
@@ -77,8 +75,8 @@ func HandleGet(getCmd *flag.FlagSet, date *string) {
 
 func HandleRnd(rndCmd *flag.FlagSet) {
 	rndCmd.Parse(os.Args[2:])
-
-	showTitles(getDateURL())
+	date := getRandomDate()
+	checkDate(date)
 }
 
 // Creates a random date between 2006-10-10 to the current date
@@ -107,21 +105,34 @@ func checkDate(d string) string {
 	words := getWord()
 
 	for _, word := range words {
+		fmt.Println(word.Date)
 		if word.Date == d {
+			fmt.Println("From json:", word.Date, word.Word)
 			return word.Word // return the word - or the word struct with all the word information
 			// I have yet to decide whether or not I want to return just the word or word w/ information
 		}
-
 		// TODO: Finish this function
 		//
-	}
+		//showTitles(getDateURL())
 
-	return ""
+	}
+	w := showTitles(getDateURL(d))
+
+	fmt.Println("Not stored in json: ", w)
+	saveInfo(d, w)
+	return w
+}
+
+func formatter(title string) string {
+	res := strings.ReplaceAll(title, "Word of the Day: ", "")
+	res = strings.ReplaceAll(res, " | Merriam-Webster", "")
+	fmt.Println(res)
+	return res
 }
 
 // params:
 // date, word, class, meaning, defintion, and example
-func saveInfo(d, w, c, m, def, e string) {
+func saveInfo(d, w string) {
 
 	// TODO: Make this a function that can be used to
 	// append the wotd and random words to the json file.
@@ -137,17 +148,17 @@ func saveInfo(d, w, c, m, def, e string) {
 }
 
 // Concatenates the wotd URL with a random date
-func getDateURL() string {
+func getDateURL(date string) string {
 
 	var url strings.Builder
 	url.WriteString(wotdURL)
-	url.WriteString(getRandomDate())
-	fmt.Println(url.String())
+	url.WriteString(date)
+	//fmt.Println(url.String())
 
 	return url.String()
 }
 
-func showTitles(url string) {
+func showTitles(url string) string {
 
 	c := getTitleTags(url)
 	wordy := make([]string, 0)
@@ -155,7 +166,7 @@ func showTitles(url string) {
 		wordy = append(wordy, msg)
 	}
 
-	fmt.Println(wordy[0])
+	return formatter(wordy[0])
 
 }
 
@@ -179,8 +190,8 @@ func getTitleTags(url string) chan string {
 // https://zetcode.com/golang/net-html/
 func getTitle(url string, c chan string) {
 
+	fmt.Println("Url", url)
 	defer wg.Done()
-
 	res, err := http.Get(url)
 
 	if err != nil {

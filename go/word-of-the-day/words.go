@@ -6,8 +6,8 @@ import (
 )
 
 type word struct {
-	Date       string
-	Word       string
+	Date       string `json:"date"`
+	Word       string `json:"word"`
 	Class      string // major form classes (noun, verb, adjective, and adverb)
 	Meaning    string
 	Definition string
