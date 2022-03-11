@@ -1,1 +1,102 @@
-[{"date":"2022-03-10","word":"Tempestuous","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2018-08-11","word":"Circuitous","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2018-02-19","word":"Sanguine","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2021-05-28","word":"Lymphatic","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2019-05-27","word":"Commemorate","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2013-06-24","word":"Encroach","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2019-06-11","word":"Chasten","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2013-04-26","word":"Decimate","Class":"","Meaning":"","Definition":"","Example":""},{"date":"2015-07-09","word":"Garderobe","Class":"","Meaning":"","Definition":"","Example":""}]
+[
+    {
+        "date": "2010-08-14",
+        "word": "Predilection"
+    },
+    {
+        "date": "2011-02-17",
+        "word": "Flounce"
+    },
+    {
+        "date": "2022-03-11",
+        "word": "Archetype"
+    },
+    {
+        "date": "2010-07-12",
+        "word": "Stand Pat"
+    },
+    {
+        "date": "2017-11-26",
+        "word": "Illustrious"
+    },
+    {
+        "date": "2008-01-12",
+        "word": "Sapient"
+    },
+    {
+        "date": "2009-07-25",
+        "word": "Hyperbole"
+    },
+    {
+        "date": "2021-08-12",
+        "word": "Callow"
+    },
+    {
+        "date": "2007-08-15",
+        "word": "Peripatetic"
+    },
+    {
+        "date": "2010-05-08",
+        "word": "Hoity-toity"
+    },
+    {
+        "date": "2017-01-18",
+        "word": "Raiment"
+    },
+    {
+        "date": "2012-12-15",
+        "word": "Hagiography"
+    },
+    {
+        "date": "2019-07-11",
+        "word": "Ostentatious"
+    },
+    {
+        "date": "2020-06-18",
+        "word": "Conflate"
+    },
+    {
+        "date": "2013-04-09",
+        "word": "Doxology"
+    },
+    {
+        "date": "2020-07-01",
+        "word": "Farrago"
+    },
+    {
+        "date": "2018-07-11",
+        "word": "Nimiety"
+    },
+    {
+        "date": "2009-10-18",
+        "word": "Ostracize"
+    },
+    {
+        "date": "2007-09-21",
+        "word": "Genial"
+    },
+    {
+        "date": "2018-11-17",
+        "word": "Susurrous"
+    },
+    {
+        "date": "2008-12-20",
+        "word": "Undulant"
+    },
+    {
+        "date": "2021-10-15",
+        "word": "Embellish"
+    },
+    {
+        "date": "2007-09-30",
+        "word": "Restive"
+    },
+    {
+        "date": "2020-05-08",
+        "word": "Verboten"
+    },
+    {
+        "date": "2010-08-28",
+        "word": "Veridical"
+    }
+]

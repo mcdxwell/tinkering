@@ -111,9 +111,6 @@ func checkDate(d string) string {
 			return word.Word // return the word - or the word struct with all the word information
 			// I have yet to decide whether or not I want to return just the word or word w/ information
 		}
-		// TODO: Finish this function
-		//
-		//showTitles(getDateURL())
 
 	}
 	w := showTitles(getDateURL(d))

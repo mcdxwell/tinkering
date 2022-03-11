@@ -8,10 +8,10 @@ import (
 type word struct {
 	Date       string `json:"date"`
 	Word       string `json:"word"`
-	Class      string // major form classes (noun, verb, adjective, and adverb)
-	Meaning    string
-	Definition string
-	Example    string
+	Class      string `json:"class,omitempty"` // major form classes (noun, verb, adjective, and adverb)
+	Meaning    string `json:"meaning,omitempty"`
+	Definition string `json:"definition,omitempty"`
+	Example    string `json:"example,omitempty"`
 }
 
 func getWord() (wotd []word) {
