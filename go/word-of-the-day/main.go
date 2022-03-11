@@ -7,13 +7,10 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"sync"
 	"time"
 
 	"golang.org/x/net/html"
 )
-
-var wg sync.WaitGroup
 
 const wotdURL = "https://www.merriam-webster.com/word-of-the-day/"
 
@@ -35,10 +32,7 @@ const wotdURL = "https://www.merriam-webster.com/word-of-the-day/"
 func main() {
 
 	getCmd := flag.NewFlagSet("get", flag.ExitOnError) //today
-	//getToday := getCmd.Bool("today", false, "Get today's WOTD")
-	//getRandom := getCmd.Bool("random", false, "Get random word")
 	rndCmd := flag.NewFlagSet("random", flag.ExitOnError)
-	getDate := getCmd.String("date", "", "Get word on this date")
 
 	if len(os.Args) < 2 {
 		fmt.Println("expected `get` subcommand")
@@ -47,33 +41,23 @@ func main() {
 
 	switch os.Args[1] {
 	case "get":
-		HandleGet(getCmd, getDate)
+		HandleGet(getCmd)
 	case "random":
 		HandleRnd(rndCmd)
 	default:
 	}
 
-	//getDateURL()
-	//showTitles(wotdURL)
-	//fmt.Println(getDateURL())
 }
 
-func HandleGet(getCmd *flag.FlagSet, date *string) {
+func HandleGet(getCmd *flag.FlagSet) {
 
 	getCmd.Parse(os.Args[2:])
-	today := time.Now().UTC()
-	if *date == "" {
-		fmt.Println(today.Format("2006-01-02"))
-		checkDate(today.Format("2006-01-02"))
-	}
-
-	if *date != "" {
-		//date := *date
-		fmt.Println("Date func")
-	}
+	today := time.Now().UTC().Format("2006-01-02")
+	checkDate(today)
 }
 
 func HandleRnd(rndCmd *flag.FlagSet) {
+
 	rndCmd.Parse(os.Args[2:])
 	date := getRandomDate()
 	checkDate(date)
@@ -93,7 +77,6 @@ func getRandomDate() string {
 	randomDate := today.AddDate(0, 0, -randomDay).Format("2006-01-02")
 
 	return randomDate
-
 }
 
 // Use the date of a word to reference the json file.
@@ -105,17 +88,16 @@ func checkDate(d string) string {
 	words := getWord()
 
 	for _, word := range words {
-		fmt.Println(word.Date)
 		if word.Date == d {
-			fmt.Println("From json:", word.Date, word.Word)
+			fmt.Println(word.Word)
 			return word.Word // return the word - or the word struct with all the word information
 			// I have yet to decide whether or not I want to return just the word or word w/ information
 		}
 
 	}
-	w := showTitles(getDateURL(d))
+	w := formatter(getWordTitle(getDateURL(d)))
 
-	fmt.Println("Not stored in json: ", w)
+	fmt.Println(w)
 	saveInfo(d, w)
 	return w
 }
@@ -123,7 +105,7 @@ func checkDate(d string) string {
 func formatter(title string) string {
 	res := strings.ReplaceAll(title, "Word of the Day: ", "")
 	res = strings.ReplaceAll(res, " | Merriam-Webster", "")
-	fmt.Println(res)
+
 	return res
 }
 
@@ -150,50 +132,16 @@ func getDateURL(date string) string {
 	var url strings.Builder
 	url.WriteString(wotdURL)
 	url.WriteString(date)
-	//fmt.Println(url.String())
 
 	return url.String()
 }
 
-func showTitles(url string) string {
+func getWordTitle(url string) string {
 
-	c := getTitleTags(url)
-	wordy := make([]string, 0)
-	for msg := range c {
-		wordy = append(wordy, msg)
-	}
-
-	return formatter(wordy[0])
-
-}
-
-func getTitleTags(url string) chan string {
-
-	c := make(chan string)
-
-	wg.Add(1)
-	go getTitle(url, c)
-
-	go func() {
-		wg.Wait()
-
-		close(c)
-	}()
-
-	return c
-}
-
-// Helpful reference
-// https://zetcode.com/golang/net-html/
-func getTitle(url string, c chan string) {
-
-	fmt.Println("Url", url)
-	defer wg.Done()
 	res, err := http.Get(url)
 
 	if err != nil {
-		c <- "failed to fetch data"
-		return
+		fmt.Println("Failed to fetch data")
 	}
 
 	defer res.Body.Close()
@@ -208,8 +156,7 @@ func getTitle(url string, c chan string) {
 
 		switch {
 		case tt == html.ErrorToken:
-			return
-
+			return "error"
 		case tt == html.StartTagToken:
 
 			t := tkn.Token()
@@ -221,9 +168,8 @@ func getTitle(url string, c chan string) {
 			t := tkn.Token()
 
 			if isTitle {
-
-				c <- t.Data
 				isTitle = false
+				return t.Data
 			}
 		}
 	}
