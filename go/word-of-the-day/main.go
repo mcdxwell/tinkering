@@ -103,6 +103,7 @@ func checkDate(d string) string {
 }
 
 func formatter(title string) string {
+
 	res := strings.ReplaceAll(title, "Word of the Day: ", "")
 	res = strings.ReplaceAll(res, " | Merriam-Webster", "")
 
@@ -113,8 +114,6 @@ func formatter(title string) string {
 // date, word, class, meaning, defintion, and example
 func saveInfo(d, w string) {
 
-	// TODO: Make this a function that can be used to
-	// append the wotd and random words to the json file.
 	wInfo := word{
 		Date: d,
 		Word: w,
