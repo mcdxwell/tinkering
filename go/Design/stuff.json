@@ -1,0 +1,24 @@
+[
+    {
+        "first": "David",
+        "middle": "A",
+        "last": "McDowell",
+        "address": "123 Fake St.",
+        "email": "davd@gmail.com",
+        "verifiedEmail": "c925f0c486796b3da3c6e3b6fee4fb19735875c4c2851ed84c448500da11e874"
+    },
+    {
+        "first": "Did",
+        "last": "McDowe",
+        "address": "123 Fake St.",
+        "email": "davd@gmail",
+        "verifiedEmail": "fdssfd"
+    },
+    {
+        "first": "Did",
+        "last": "McDowe",
+        "address": "123 Fake St.",
+        "email": "davd@gmail",
+        "verifiedEmail": "fdssfd"
+    }
+]
