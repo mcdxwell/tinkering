@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Number interface {
 	int64 | float64
@@ -56,6 +58,12 @@ func AddOddGrades[k comparable, V Num](m map[k]V) []V {
 	return ff
 }
 
+func Print[T any](s []T) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+
 func main() {
 
 	ints := map[string]int64{
@@ -83,4 +91,20 @@ func main() {
 
 	fmt.Printf("Non-generic sums: %v and %v\nGeneric sums: %v and %v\n", SumInts(ints), SumFloats(floats), SumIntsOrFloats(ints), SumIntsOrFloats(floats))
 	fmt.Printf("Generic odd sums: %v Even sums: \n", AddOddGrades(moreInts))
+
+	roonies := []rune{97, 20, 12, 12, 12, 13, 97, 10, 10, 1, 2, 3, 4, 4, 5}
+	fmt.Println(Set(roonies))
+}
+
+// Removes duplicates
+func Set[T any](s []T) []T {
+	keys := make(map[any]bool)
+	list := []T{}
+	for _, k := range s {
+		if _, v := keys[k]; !v {
+			keys[k] = true
+			list = append(list, k)
+		}
+	}
+	return list
 }
