@@ -1,24 +1,26 @@
 [
     {
-        "first": "David",
-        "middle": "A",
-        "last": "McDowell",
-        "address": "123 Fake St.",
-        "email": "davd@gmail.com",
-        "verifiedEmail": "c925f0c486796b3da3c6e3b6fee4fb19735875c4c2851ed84c448500da11e874"
+        "fullname": {
+            "first": "Bobby",
+            "middle": "Boi",
+            "last": "Hill"
+        },
+        "addresses": {
+            "address": "84 Rainey Street, Arlen, Texas",
+            "email": "pro-pain@accessories.com",
+            "verifiedemail": "3330f294216baca52f16a897a6f85b8d06434bc16a545fe28eb72ad14aaaca8e"
+        }
     },
     {
-        "first": "Did",
-        "last": "McDowe",
-        "address": "123 Fake St.",
-        "email": "davd@gmail",
-        "verifiedEmail": "fdssfd"
-    },
-    {
-        "first": "Did",
-        "last": "McDowe",
-        "address": "123 Fake St.",
-        "email": "davd@gmail",
-        "verifiedEmail": "fdssfd"
+        "fullname": {
+            "first": "Hank",
+            "middle": "Pancake-ass",
+            "last": "Hill"
+        },
+        "addresses": {
+            "address": "84 Rainey Street, Arlen, Texas",
+            "email": "hank@accessories.com",
+            "verifiedemail": "9fc4c1f8dcb741deb2227b899817d7b9f8c5ac7e24948270a954f6ac67b30477"
+        }
     }
 ]

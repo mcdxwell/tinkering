@@ -13,8 +13,11 @@ func main() {
 	saveContact(b)
 }
 
+// Functional programming inspiration
+// https://www.youtube.com/watch?v=Up7LcbGZFuo
 // "Persistence ignorance"
 
+// Fun with composition
 type FullName struct {
 	First  string `json:"first,omitempty"`
 	Middle string `json:"middle,omitempty"`
@@ -24,17 +27,13 @@ type FullName struct {
 type Addresses struct {
 	Address         string `json:"address,omitempty"`
 	Email           string `json:"email,omitempty"`
-	VerifiedEmail   string `json:"verifiedEmail,omitempty"`
-	UnverifiedEmail string `json:"unverifiedEmail,omitempty"`
-}
-
-type ContactInfo struct {
-	Addresses
+	VerifiedEmail   string `json:"verifiedemail,omitempty"`
+	UnverifiedEmail string `json:"unverifiedemail,omitempty"`
 }
 
 type Contact struct {
-	FullName
-	ContactInfo
+	FullName  *FullName  `json:"fullname,omitempty"`
+	Addresses *Addresses `json:"addresses,omitempty"`
 }
 
 // Which values are optional?
@@ -63,20 +62,18 @@ func resetPassword(a Addresses) {
 
 func saveContact(c Contact) {
 
-	c.First = "Did"
-	c.Middle = ""
-	c.Last = "McDowe"
-	c.Email = "davd@gmail"
-	c.VerifiedEmail = "fdssfd"
-	//c.VerifiedEmail = hashInfo(c.Email)
-	c.Address = "123 Fake St."
-	//fmt.Println(hashInfo(c.Email))
-	//fmt.Println(c)
-	//resetPassword(c.Addresses)
-
 	// read and write word information to existing information in wotd.json
 	info := getContacts()
-	info = append(info, c)
+	fmt.Println(info)
+	info = append(info,
+		Contact{
+			FullName: &FullName{
+				First: "Hank", Middle: "Pankcake-ass", Last: "Hill"},
+			Addresses: &Addresses{
+				Email:         "hank@accessories.com",
+				VerifiedEmail: hashInfo("hank@accessories.com"),
+				Address:       "84 Rainey Street, Arlen, Texas"}})
+
 	saveContactInfo(info)
 }
 
