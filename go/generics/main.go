@@ -120,12 +120,12 @@ func Set[T any](s []T) []T {
 	return list
 }
 
-func min(a, b int) int {
+/* func min(a, b int) int {
 	if a < b {
 		return a
 	}
 	return b
-}
+} */
 
 func max(a, b int) int {
 	if a < b {
@@ -170,4 +170,42 @@ func manyLen[T thingers](arrs ...T) []int {
 		lengths = append(lengths, arrLen)
 	}
 	return lengths
+}
+
+/* func Slice[T compare](s []T) {
+	someSlice := make([]T, 0)
+	copy(someSlice, s)
+
+	for _, item := range s {
+		ok := item
+	}
+
+} */
+
+// Pulled from https://pkg.go.dev/golang.org/x/exp/constraints
+type Integer interface {
+	Signed | Unsigned
+}
+
+type Ordered interface {
+	Integer | Float | ~string
+}
+
+type Float interface {
+	~float32 | ~float64
+}
+
+type Signed interface {
+	~int | ~int8 | ~int16 | ~int32 | ~int64
+}
+
+type Unsigned interface {
+	~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr
+}
+
+func min[T Ordered](x, y T) T {
+	if x < y {
+		return x
+	}
+	return y
 }
