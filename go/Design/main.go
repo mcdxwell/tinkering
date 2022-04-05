@@ -11,6 +11,7 @@ import (
 func main() {
 	b := Contact{}
 	saveContact(b)
+	
 }
 
 // Functional programming inspiration
@@ -32,6 +33,7 @@ type Addresses struct {
 }
 
 type Contact struct {
+	ID		  string     `json:"id"`
 	FullName  *FullName  `json:"fullname,omitempty"`
 	Addresses *Addresses `json:"addresses,omitempty"`
 }
@@ -67,11 +69,12 @@ func saveContact(c Contact) {
 	fmt.Println(info)
 	info = append(info,
 		Contact{
+			ID: "321dfjds8j",
 			FullName: &FullName{
-				First: "Hank", Middle: "Pankcake-ass", Last: "Hill"},
+				First: "Peggy", Middle: "Bigfoot", Last: "Hill"},
 			Addresses: &Addresses{
-				Email:         "hank@accessories.com",
-				VerifiedEmail: hashInfo("hank@accessories.com"),
+				Email:         "peggy@peggy.com",
+				VerifiedEmail: hashInfo("peggy@peggy.com"),
 				Address:       "84 Rainey Street, Arlen, Texas"}})
 
 	saveContactInfo(info)
