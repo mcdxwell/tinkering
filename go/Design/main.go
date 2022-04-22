@@ -11,7 +11,7 @@ import (
 func main() {
 	b := Contact{}
 	saveContact(b)
-	
+
 }
 
 // Functional programming inspiration
@@ -33,7 +33,7 @@ type Addresses struct {
 }
 
 type Contact struct {
-	ID		  string     `json:"id"`
+	ID        string     `json:"id"`
 	FullName  *FullName  `json:"fullname,omitempty"`
 	Addresses *Addresses `json:"addresses,omitempty"`
 }
@@ -109,4 +109,11 @@ func getContacts() (contact []Contact) {
 	}
 
 	return contact
+}
+
+
+// https://stackoverflow.com/questions/42739877/getter-and-setter-conventions-in-go
+
+func NewContact(c Contact) {
+	
 }
